@@ -10,11 +10,12 @@
 int ping(char sendip){
   struct icmphdr icmphdrinfo; //icmp用のヘッダー
   int sock;//sock用
-  sock = socket(AF_INET, SOCK_RAW,0);//SOCK_RAW ->ip or icmp ,AF_INET ->ipv4
   struct sockaddr_in address;//アドレス用の構造体を宣言
 /*addressの設定*/
   address.sin_family = AF_INET;
   address.sin_addr.s_addr = inet_addr(&sendip);
+
+  sock = socket(AF_INET, SOCK_RAW,IPPROTO_ICMP);//SOCK_RAW ->ip or icmp ,AF_INET ->ipv4
 if (sock < 0) {
   perror("socket err");
   return 1;
