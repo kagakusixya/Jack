@@ -30,5 +30,12 @@ icmphdrinfo.un.echo.sequence = 0;//シーケンス番号
 
 //checksumの計算
 icmphdrinfo.checksum = checksum((unsigned short *)&icmphdrinfo, sizeof(icmphdrinfo));
+int err;
+err = sendto(sock,
+           (char *)&icmphdrinfo, sizeof(icmphdrinfo),//バッファー,size,flags
+           0, (struct sockaddr *)&address, sizeof(address));//バッファー,size
+if (err < 1) {
+  perror("sendto");
+}
   return 0;
 }
