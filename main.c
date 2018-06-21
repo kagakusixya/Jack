@@ -7,6 +7,5 @@ int main(int argc,char *argv[]){
   }else if(pin ==2){
     printf("sendto err\n");
   }
-  
   return 0;
 }
