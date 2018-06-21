@@ -36,6 +36,7 @@ err = sendto(sock,
            0, (struct sockaddr *)&address, sizeof(address));//バッファー,size
 if (err < 1) {
   perror("sendto");
+  return 2;
 }
   return 0;
 }
