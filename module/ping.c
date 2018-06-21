@@ -20,5 +20,8 @@ icmphdrinfo.code = 0; //0固定
 //checksumは後で
 icmphdrinfo.un.echo.id = 0;//id
 icmphdrinfo.un.echo.sequence = 0;//シーケンス番号
+
+//checksumの計算
+icmphdrinfo.checksum = checksum((unsigned short *)&icmphdrinfo, sizeof(icmphdrinfo))
   return 0;
 }
