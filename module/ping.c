@@ -4,7 +4,7 @@
 #include<string.h>
 #include "ping.h"
 /*ping*/
-int ping(char sendip,char myip ){
+int ping(char sendip){
   struct icmphdr icmphdrinfo; //icmp用のヘッダー
   int sock;//sock用
   sock = socket(AF_INET, SOCK_RAW,0);
