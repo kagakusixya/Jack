@@ -9,6 +9,8 @@ int ping(char sendip){
   int sock;//sock用
   sock = socket(AF_INET, SOCK_RAW,0);
   //SOCK_RAW ->ip or icmp ,AF_INET ->ipv4
+  struct sockaddr_in address;//アドレス用の構造体を宣言
+
 if (sock < 0) {
   perror("socket err");
   return 1;
