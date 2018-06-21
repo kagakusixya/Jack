@@ -2,6 +2,7 @@
 #include<stdio.h>
 #include<netinet/ip_icmp.h>
 #include<string.h>
+#include "ping.h"
 /*ping*/
 int ping(char sendip,char myip ){
   struct icmphdr icmphdrinfo; //icmp用のヘッダー
@@ -22,5 +23,6 @@ icmphdrinfo.un.echo.id = 0;//id
 icmphdrinfo.un.echo.sequence = 0;//シーケンス番号
 
 //checksumの計算
+icmphdrinfo.checksum = checksum((unsigned short *)&icmphdrinfo, sizeof(icmphdrinfo));
   return 0;
 }
