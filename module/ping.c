@@ -2,6 +2,9 @@
 #include<stdio.h>
 #include<netinet/ip_icmp.h>
 #include<string.h>
+#include<netinet/ip.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 #include "ping.h"
 /*ping*/
 int ping(char sendip){
@@ -9,7 +12,9 @@ int ping(char sendip){
   int sock;//sock用
   sock = socket(AF_INET, SOCK_RAW,0);//SOCK_RAW ->ip or icmp ,AF_INET ->ipv4
   struct sockaddr_in address;//アドレス用の構造体を宣言
-
+/*addressの設定*/
+  address.sin_family = AF_INET;
+  address.sin_addr.s_addr = inet_addr(&sendip);
 if (sock < 0) {
   perror("socket err");
   return 1;
