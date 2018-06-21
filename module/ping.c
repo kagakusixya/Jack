@@ -12,9 +12,13 @@ if (sock < 0) {
   perror("socket err");
   return 1;
 }
-/*icmphdrinfoにデータを代入*/
-
 //icmphdrinfo初期化
 memset(&icmphdrinfo,0,sizeof(icmphdrinfo));
+//icmphdrinfoにデータを代入
+icmphdrinfo.type = ICMP_ECHO;//エコーリクエスト
+icmphdrinfo.code = 0; //0固定
+//checksumは後で
+icmphdrinfo.un.echo.id = 0;//id
+icmphdrinfo.un.echo.sequence = 0;//シーケンス番号
   return 0;
 }
