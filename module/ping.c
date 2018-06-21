@@ -7,8 +7,7 @@
 int ping(char sendip){
   struct icmphdr icmphdrinfo; //icmp用のヘッダー
   int sock;//sock用
-  sock = socket(AF_INET, SOCK_RAW,0);
-  //SOCK_RAW ->ip or icmp ,AF_INET ->ipv4
+  sock = socket(AF_INET, SOCK_RAW,0);//SOCK_RAW ->ip or icmp ,AF_INET ->ipv4
   struct sockaddr_in address;//アドレス用の構造体を宣言
 
 if (sock < 0) {
