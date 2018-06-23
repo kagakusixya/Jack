@@ -4,6 +4,7 @@
 #include<string.h>
 #include <arpa/inet.h>
 #include<netinet/ip.h>
+#include <unistd.h>
 #include "ping.h"
 
 /*ping*/
@@ -11,7 +12,6 @@ int ping(char *sendip){
   struct icmphdr icmphdrinfo; //icmp用のヘッダー
   int sock;//sock用
   struct sockaddr_in address;//アドレス用の構造体を宣言
-  struct ipheader *ipher;
 /*addressの設定*/
   address.sin_family = AF_INET;
   address.sin_addr.s_addr = inet_addr(sendip);
@@ -22,7 +22,6 @@ if (sock < 0) {
   return 1;
 }
 /*ipheaderの編集場所*/
-
 //icmphdrinfo初期化
 memset(&icmphdrinfo,0,sizeof(icmphdrinfo));
 //icmphdrinfoにデータを代入
@@ -39,5 +38,6 @@ err = sendto(sock,(char *)&icmphdrinfo, sizeof(icmphdrinfo),0, (struct sockaddr 
 if (err < 1) {
   perror("sendto");
 }
+ close(sock);
   return 0;
 }
