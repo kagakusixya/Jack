@@ -21,7 +21,7 @@ if (sock < 0) {
   perror("socket err");
   return 1;
 }
-/*ipheader*/
+/*ipheaderの編集場所*/
 
 //icmphdrinfo初期化
 memset(&icmphdrinfo,0,sizeof(icmphdrinfo));
